@@ -424,7 +424,7 @@ body.loaded .preload-bg {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("assets/img/me.JPG") top right;
+  background: url("assets/img/me.jpg") top right;
   background-size: cover;
 }
 
