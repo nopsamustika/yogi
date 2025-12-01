@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Detail - Nopsa Mustika Prayogi</title>
+
+  <!-- Icon & CSS -->
+  <link href="assets/img/icon.png" rel="icon" />
+  <link href="assets/img/icon.png" rel="apple-touch-icon" />
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Raleway:300,400,500,600,700|Poppins:300,400,500,600,700" rel="stylesheet" />
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+  <link href="assets/css/style.css" rel="stylesheet" />
+
+  <style>
+    body { background:#f8f9fa; font-family: 'Open Sans', sans-serif; }
+    main { padding-top:100px; padding-bottom:60px; }
+
+    .project-details-slider { border-radius:12px; overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,0.15); }
+    .swiper-slide img { width:100%; display:block; }
+
+    .project-info-box {
+      background:#fff; 
+      padding:24px; 
+      border-radius:12px; 
+      box-shadow:0 8px 24px rgba(0,0,0,0.1); 
+      transition:transform 0.3s;
+    }
+    .project-info-box:hover { transform: translateY(-4px); }
+
+    .project-title { font-size:26px; margin-bottom:12px; font-weight:700; }
+    .project-meta { color:#6c757d; margin-bottom:10px; font-size:14px; }
+    .project-meta strong { color:#343a40; }
+
+    .btn-visit, .btn-back { display:inline-block; margin-top:12px; padding:10px 16px; background:yellowgreen; color:#fff; border-radius:8px; text-decoration:none; font-weight:600; transition:0.3s; }
+    .btn-visit:hover, .btn-back:hover { opacity:0.9; transform: translateY(-2px); }
+
+    .swiper-button-next, .swiper-button-prev { color:yellowgreen; }
+  </style>
+</head>
+<body>
+
+<header id="header" class="fixed-top">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <h1 class="logo me-auto me-lg-0"><a href="index.html">Portfolio</a></h1>
+    <nav id="navbar" class="navbar order-last order-lg-0">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="resume.html">Experience</a></li>
+        <li><a href="project.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+    <div class="header-social-links">
+      <a href="channel_yt.html"><i class="bi bi-youtube"></i></a>
+      <a href="https://github.com/nopsamustika"><i class="bi bi-github"></i></a>
+      <a href="instagram.html"><i class="bi bi-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/nopsa-mustika-prayogi-80b2112a4/"><i class="bi bi-linkedin"></i></a>
+      <a href="https://wa.me/0895375704586?text=Halo%20Saya%20dari%20Website"><i class="bi bi-whatsapp"></i></a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section id="project-details" class="project-details">
+    <div class="container">
+      <div class="row gy-4">
+        <!-- slider -->
+        <div class="col-lg-8">
+          <div class="project-details-slider swiper" data-aos="fade-up">
+            <div class="swiper-wrapper" id="swiper-slides"></div>
+            <!-- Pagination & Navigation -->
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+
+        <!-- info -->
+        <div class="col-lg-4">
+          <div class="project-info-box" data-aos="fade-up">
+            <div id="project-meta"></div>
+            <div id="project-desc" style="margin-top:12px;"></div>
+            <a href="project.html" class="btn-back">Kembali</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="footer">
+  <div class="container">
+    <div class="menu">
+      <a href="index.html">Home</a>
+      <a href="resume.html">Experience</a>
+      <a href="project.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="copyright">
+      &copy; <script>document.write(new Date().getFullYear());</script> Portfolio <strong><span>by nopsa</span></strong>
+    </div>
+  </div>
+</footer>
+
+<!-- vendor js -->
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- data-project.js -->
+<script src="assets/js/data-project.js"></script>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const id = parseInt(params.get('id'), 10);
+  const project = (window.projectData || []).find(p => Number(p.id) === id);
+
+  if (!project) {
+    alert('Project tidak ditemukan!');
+    window.location.href = 'project.html';
+  } else {
+    const escapeHtml = s => String(s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]);
+    const metaBox = document.getElementById('project-meta');
+    const descBox = document.getElementById('project-desc');
+
+    const safeJudul = escapeHtml(project.judul);
+    const safeKategori = escapeHtml(project.kategori);
+    const safeTahun = escapeHtml(project.tahun);
+    const safeDeskripsi = escapeHtml(project.deskripsi);
+
+    let linkHtml = '-';
+    if (project.link && project.link.trim() !== '' && project.link !== '-') {
+      const hasProto = /^(https?:)?\/\//i.test(project.link);
+      const href = hasProto ? project.link : 'https://' + project.link;
+      linkHtml = `<a class="btn-visit" href="${href}" target="_blank" rel="noopener noreferrer">Visit Project</a>`;
+    }
+
+    metaBox.innerHTML = `
+      <div class="project-title">${safeJudul}</div>
+      <div class="project-meta"><strong>Kategori:</strong> ${safeKategori}</div>
+      <div class="project-meta"><strong>Tahun:</strong> ${safeTahun}</div>
+      <div class="project-meta"><strong>Link:</strong> ${linkHtml}</div>
+    `;
+
+    descBox.innerHTML = `<p>${safeDeskripsi}</p>`;
+
+    const swiperSlides = document.getElementById('swiper-slides');
+    (project.gambar || []).forEach(img => {
+      const src = 'assets/img/project/' + project.id + '/' + img;
+      const slide = document.createElement('div');
+      slide.className = 'swiper-slide';
+      slide.innerHTML = `<a href="${src}" class="glightbox" data-gallery="project-gallery"><img src="${src}" alt="${safeJudul}"></a>`;
+      swiperSlides.appendChild(slide);
+    });
+
+    // init Swiper & GLightbox dengan autoplay, tombol prev/next, dan pagination
+    setTimeout(() => {
+      new Swiper('.project-details-slider', {
+        speed: 600,
+        loop: true,
+        autoplay: { delay: 3000, disableOnInteraction: false },
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        pagination: { el: '.swiper-pagination', type: 'bullets', clickable: true }
+      });
+      GLightbox({ selector: '.glightbox' });
+      if (window.AOS) AOS.init();
+    }, 100);
+  }
+</script>
+
+</body>
+</html>
