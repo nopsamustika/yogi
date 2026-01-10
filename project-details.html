@@ -121,62 +121,83 @@
 <script src="assets/js/data-project.js"></script>
 
 <script>
-  const params = new URLSearchParams(window.location.search);
-  const id = Number(params.get('id'));
-  const project = (window.projectData || []).find(p => Number(p.id) === id);
+const params = new URLSearchParams(window.location.search);
+const id = Number(params.get('id'));
 
-  if (!project) {
-    alert('Project tidak ditemukan!');
-    window.location.href = 'project.html';
-  } else {
-    const escapeHtml = s => String(s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]);
-    const metaBox = document.getElementById('project-meta');
-    const descBox = document.getElementById('project-desc');
+const project = (window.projectData || []).find(p => Number(p.id) === id);
 
-    const safeJudul = escapeHtml(project.judul);
-    const safeKategori = escapeHtml(project.kategori);
-    const safeTahun = escapeHtml(project.tahun);
-    const safeDeskripsi = escapeHtml(project.deskripsi);
+if (!project) {
+  alert('Project tidak ditemukan!');
+  window.location.href = 'project.html';
+} else {
 
-    let linkHtml = '-';
-    if (project.link && project.link.trim() !== '' && project.link !== '-') {
-      const hasProto = /^(https?:)?\/\//i.test(project.link);
-      const href = hasProto ? project.link : 'https://' + project.link;
-      linkHtml = `<a class="btn-visit" href="${href}" target="_blank" rel="noopener noreferrer">Visit Project</a>`;
-    }
+  const escapeHtml = s =>
+    String(s || '').replace(/[&<>"']/g, m =>
+      ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]
+    );
 
-    metaBox.innerHTML = `
-      <div class="project-title">${safeJudul}</div>
-      <div class="project-meta"><strong>Kategori:</strong> ${safeKategori}</div>
-      <div class="project-meta"><strong>Tahun:</strong> ${safeTahun}</div>
-      <div class="project-meta"><strong>Link:</strong> ${linkHtml}</div>
-    `;
+  const metaBox = document.getElementById('project-meta');
+  const descBox = document.getElementById('project-desc');
+  const swiperSlides = document.getElementById('swiper-slides');
 
-    descBox.innerHTML = `<p>${safeDeskripsi}</p>`;
+  const safeJudul = escapeHtml(project.judul);
+  const safeKategori = escapeHtml(project.kategori);
+  const safeTahun = escapeHtml(project.tahun);
+  const safeDeskripsi = escapeHtml(project.deskripsi);
 
-    const swiperSlides = document.getElementById('swiper-slides');
-    (project.gambar || []).forEach(img => {
-      const src = 'assets/img/project/' + project.id + '/' + img;
+  let linkHtml = '-';
+  if (project.link && project.link !== '-') {
+    const href = /^(https?:)?\/\//i.test(project.link)
+      ? project.link
+      : 'https://' + project.link;
+
+    linkHtml = `<a class="btn-visit" href="${href}" target="_blank" rel="noopener noreferrer">Visit Project</a>`;
+  }
+
+  metaBox.innerHTML = `
+    <div class="project-title">${safeJudul}</div>
+    <div class="project-meta"><strong>Kategori:</strong> ${safeKategori}</div>
+    <div class="project-meta"><strong>Tahun:</strong> ${safeTahun}</div>
+    <div class="project-meta"><strong>Link:</strong> ${linkHtml}</div>
+  `;
+
+  descBox.innerHTML = `<p>${safeDeskripsi}</p>`;
+
+  if (project.gambar && project.gambar.length > 0) {
+    project.gambar.forEach(img => {
+      const src = `assets/img/project/${project.id}/${img}`;
       const slide = document.createElement('div');
       slide.className = 'swiper-slide';
-      slide.innerHTML = `<a href="${src}" class="glightbox" data-gallery="project-gallery"><img src="${src}" alt="${safeJudul}"></a>`;
+      slide.innerHTML = `
+        <a href="${src}" class="glightbox" data-gallery="project-gallery-${project.id}">
+          <img src="${src}" alt="${safeJudul}">
+        </a>`;
       swiperSlides.appendChild(slide);
     });
-
-    // init Swiper & GLightbox dengan autoplay, tombol prev/next, dan pagination
-    setTimeout(() => {
-      new Swiper('.project-details-slider', {
-        speed: 600,
-        loop: true,
-        autoplay: { delay: 3000, disableOnInteraction: false },
-        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-        pagination: { el: '.swiper-pagination', type: 'bullets', clickable: true }
-      });
-      GLightbox({ selector: '.glightbox' });
-      if (window.AOS) AOS.init();
-    }, 100);
+  } else {
+    swiperSlides.innerHTML = '<p>Tidak ada gambar project.</p>';
   }
+
+  // INIT SLIDER
+  new Swiper('.project-details-slider', {
+    speed: 600,
+    loop: project.gambar.length > 1,
+    autoplay: project.gambar.length > 1 ? { delay: 3000 } : false,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
+    }
+  });
+
+  GLightbox({ selector: '.glightbox' });
+  AOS.init({ once: true, duration: 800 });
+}
 </script>
+
 
 </body>
 </html>
