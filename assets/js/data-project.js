@@ -89,5 +89,23 @@ window.projectData = [
     link: "https://colab.research.google.com/drive/1zeDnaO02Io9uaUB9HouWWG2PLT8uYTeT?usp=sharing",
     deskripsi: "Prediksi komponen PC dengan machine learning dan akurasi 89%.",
     gambar: ["1.jpeg", "2.jpeg", "3.jpeg"]
+  },
+  {
+    id: 11,
+    judul: "Analisa Stok dan Harga Obat",
+    kategori: "Data Analyst",
+    tahun: 2025,
+    link: "https://docs.google.com/spreadsheets/d/1Woy5E7c2voe90L1ptcT_KPtWhC2xuCIDv36IgUEJNbs/edit?usp=sharing",
+    deskripsi: "Mengolah data harga dan ketersediaan stok obat dari beberapa vendor untuk melakukan analisis perbandingan harga. Menyajikan hasil analisis sebagai bahan pendukung pengambilan keputusan pengadaan dan efisiensi stok.",
+    gambar: ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg]
+  },
+  {
+    id: 12,
+    judul: "Analisa Penyewaan Mobil",
+    kategori: "Data Analyst",
+    tahun: 2025,
+    link: "https://docs.google.com/spreadsheets/d/1pEwUg8u-V3_C8b7vUtSYvfttYLrvPAYFVxGZUjI7ugs/edit?usp=sharing",
+    deskripsi: "Mengolah data operasional penyewaan mobil untuk memantau status armada harian (ready/rented) menggunakan Spreadsheet. Menyusun rekap data bulanan guna menganalisis tingkat pemanfaatan armada sebagai bahan evaluasi operasional.",
+    gambar: ["1.jpeg", "2.jpeg", "3.jpeg"]
   }
 ];
