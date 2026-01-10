@@ -97,7 +97,7 @@ window.projectData = [
     tahun: 2025,
     link: "https://docs.google.com/spreadsheets/d/1Woy5E7c2voe90L1ptcT_KPtWhC2xuCIDv36IgUEJNbs/edit?usp=sharing",
     deskripsi: "Mengolah data harga dan ketersediaan stok obat dari beberapa vendor untuk melakukan analisis perbandingan harga. Menyajikan hasil analisis sebagai bahan pendukung pengambilan keputusan pengadaan dan efisiensi stok.",
-    gambar: ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg]
+    gambar: ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg"]
   },
   {
     id: 12,
